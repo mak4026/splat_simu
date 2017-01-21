@@ -5,15 +5,16 @@ require './player.rb'
 require './game.rb'
 
 
-def csv_export(players)
-  csv_name = "splasimu"+Time.now.strftime("%F_%H%M%S")+".csv"
-  csv_header = ["udemae", "player_skill", "game_count", "counter_stop", "dropout"]
+def csv_export(players, id = "")
+  csv_name = "splasimu" + Time.now.strftime("%F_%H%M%S") + id + ".csv"
+  csv_header = ["udemae", "player_skill", "game_count", "win_count", "counter_stop", "dropout"]
   csv_data = CSV.generate("", :headers => csv_header, :write_headers => true) do |csv|
     players.each{ |aPlayer|
       csv << [
         aPlayer.udemae,
         aPlayer.player_skill,
         aPlayer.game_count,
+        aPlayer.win_count,
         aPlayer.counter_stop?,
         aPlayer.dropout?
       ]

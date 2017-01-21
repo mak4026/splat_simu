@@ -8,10 +8,11 @@ S+のプレイヤー同士をたくさん戦わせて, そのあとウデマエ�
 | `udemae` | 最終ウデマエ値 |
 | `player_skill` | そのプレイヤーの実力を表すパラメータ |
 | `game_count` | 試合回数 |
+| `win_count` | 勝利回数 |
 | `dropout` | S落ち経験者かどうか |
 | `counter_stop` | カンスト経験者かどうか |
 
-を含むCSVデータを作ります. ファイルネームは`splasimuYYYY-MM-dd_HHmmss.csv`です.
+を含むCSVデータを作ります. ファイルネームは`splasimuYYYY-MM-dd_HHmmss[_id].csv`です.
 あとはExcelやRで好き勝手に眺めるといいと思います.
 
 ## 使い方

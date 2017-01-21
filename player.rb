@@ -1,9 +1,10 @@
 class Player
-  attr_reader :udemae, :game_count, :player_skill
+  attr_reader :udemae, :game_count, :player_skill, :win_count
   def initialize(ps)
     @player_skill = ps
     @udemae = 50
     @game_count = 0
+    @win_count = 0
     @counter_stop = false
     @dropout = false
   end
@@ -11,6 +12,7 @@ class Player
   def win
     play
     @udemae += winner_udemae_change
+    @win_count += 1
     if @udemae > 99
       @udemae = 99
       @counter_stop = true
