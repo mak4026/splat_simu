@@ -2,6 +2,14 @@ require './player.rb'
 require './Recorder.rb'
 
 def battle(alpha, blabo)
+  if $random_probability
+    if rand < $random_probability
+      reason = :random
+      result = rand(2) == 0 ? true : false
+      return result, reason
+    end
+  end
+
   result = judge(alpha, blabo)
   if result
     alpha.each { |aPlayer|
@@ -44,12 +52,12 @@ def play_one_game(players, dropouts, counter_stops)
 
   matching.each { |aRoom|
     if aRoom.length == 2 && aRoom[1].length == 4
-      result = battle(aRoom[0], aRoom[1])
+      result, reason = battle(aRoom[0], aRoom[1])
       if $record_ps
         if recorder = recorder_include?(aRoom[0])
-          result_record(recorder, aRoom[0], aRoom[1], result)
+          result_record(recorder, aRoom[0], aRoom[1], result, reason)
         elsif recorder = recorder_include?(aRoom[1])
-          result_record(recorder, aRoom[1], aRoom[0], !result)
+          result_record(recorder, aRoom[1], aRoom[0], !result, reason)
         end
       end
     end

@@ -54,7 +54,8 @@ def csv_records_export(recorder)
     "rival1_ps",
     "rival2_ps",
     "rival3_ps",
-    "rival4_ps"
+    "rival4_ps",
+    "reason"
   ]
   csv_data = CSV.generate("", :headers => csv_header, :write_headers => true) do |csv|
     recorder.records.each{ |record|
@@ -68,6 +69,7 @@ def csv_records_export(recorder)
       record[:rivals].each { |player|
         row << player.player_skill
       }
+      row << record[:reason].to_s
       csv << row
     }
   end

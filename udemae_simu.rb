@@ -7,13 +7,20 @@ require './util.rb'
 
 $exec_time = Time.now
 
-$params = ARGV.getopts('n:r:')
+$params = ARGV.getopts('n:r:', 'random:')
 
 N = $params["n"].to_i
 GAME_REPEAT_COUNT = 1000
+
 $record_ps = $params["r"].nil? ? nil : $params["r"].to_i
 unless $record_ps.nil?
   raise ArgumentError, "0 < (Recorder's player_skill) < 100" unless $record_ps > 0 && $record_ps < 100
+end
+
+$random_probability = $params["random"].nil? ? nil : $params["random"].to_f
+unless $random_probability.nil?
+  srand
+  raise ArgumentError, "0 <= (Probability of Random Decision) <= 1" unless $random_probability >= 0 && $random_probability <= 1
 end
 
 make_log

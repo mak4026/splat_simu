@@ -7,12 +7,13 @@ class Recorder < Player
     @records = []
   end
 
-  def write_record(friends, rivals, result)
+  def write_record(friends, rivals, result, reason)
     present = {}
     present[:friends] = friends
     present[:rivals] = rivals
     present[:result] = result ? "win" : "lose"
     present[:udemae] = @udemae
+    present[:reason] = reason
 
     @records << present
   end
@@ -27,9 +28,9 @@ def recorder_include?(aTeam)
   false
 end
 
-def result_record(recorder, friend_team, rival_team, result)
+def result_record(recorder, friend_team, rival_team, result, reason)
   friend = friend_team.dup
   deleted = friend.delete(recorder)
   raise "recorder not found" if deleted.nil?
-  recorder.write_record(Marshal.load(Marshal.dump(friend)), Marshal.load(Marshal.dump(rival_team)), result)
+  recorder.write_record(Marshal.load(Marshal.dump(friend)), Marshal.load(Marshal.dump(rival_team)), result, reason)
 end
