@@ -3,8 +3,17 @@ require './player.rb'
 require './Recorder.rb'
 require './game.rb'
 
+def make_log
+  file_name = "splasimu#{$exec_time.strftime("%F_%H%M%S")}.log"
+  File.open(file_name, "w"){ |file|
+    $params.each{ |key,value|
+      file.puts("#{key} => #{value}")
+    }
+  }
+end
+
 def csv_filename(id = "")
-  csv_name = "splasimu" + Time.now.strftime("%F_%H%M%S")
+  csv_name = "splasimu" + $exec_time.strftime("%F_%H%M%S")
   csv_name << "_" + id unless id.empty?
   csv_name << ".csv"
   csv_name

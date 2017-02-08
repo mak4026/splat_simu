@@ -5,6 +5,8 @@ require './Recorder.rb'
 require './game.rb'
 require './util.rb'
 
+$exec_time = Time.now
+
 $params = ARGV.getopts('n:r:')
 
 N = $params["n"].to_i
@@ -13,6 +15,8 @@ $record_ps = $params["r"].nil? ? nil : $params["r"].to_i
 unless $record_ps.nil?
   raise ArgumentError, "0 < (Recorder's player_skill) < 100" unless $record_ps > 0 && $record_ps < 100
 end
+
+make_log
 
 bell = RandomBell.new(mu: 50, sigma: 20, range: 0..100)
 puts bell.to_histogram
