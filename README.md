@@ -13,6 +13,7 @@ S+のプレイヤー同士をたくさん戦わせて, そのあとウデマエ�
 | `counter_stop` | カンスト経験者かどうか |
 
 を含むCSVデータを作ります. ファイルネームは`splasimuYYYY-MM-dd_HHmmss[_id].csv`です.
+また, `splasimuYYYY-MM-dd_HHmmss.log`に実行時に指定したオプションを記録します.
 あとはExcelやRで好き勝手に眺めるといいと思います.
 
 ## 使い方
