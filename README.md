@@ -26,3 +26,22 @@ ruby udemae_simu.rb -n 10000
 
 ### オプション引数
 - `-n (int)` 参加するプレイヤーの人数
+- `-r (int)` 対戦記録を記録するプレイヤーを配置します. 引数で記録プレイヤーのプレイヤースキル値を指定します. (ただし0 < r < 100)
+対戦記録を次のような形のcsvで出力します.1行が1試合を表します.
+ファイル名のidは"Record"です.
+
+// jsonで出力したいかもしれない
+
+| カラム名 | 意味 |
+|:----|:----|
+| `udemae` | その試合終了後のウデマエ値 |
+| `result` | その試合の結果(`"win"`か`"lose"`) |
+| `my_ps` | 記録しているプレイヤーの`player_skill` |
+| `friend1` | 味方チームプレイヤーの`player_skill` |
+| `friend2` | 味方チームプレイヤーの`player_skill` |
+| `friend3` | 味方チームプレイヤーの`player_skill` |
+| `rival1` | 敵チームプレイヤーの`player_skill` |
+| `rival2` | 敵チームプレイヤーの`player_skill` |
+| `rival3` | 敵チームプレイヤーの`player_skill` |
+| `rival4` | 敵チームプレイヤーの`player_skill` |
+

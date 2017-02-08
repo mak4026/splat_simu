@@ -1,7 +1,9 @@
 require './player.rb'
+require './Recorder.rb'
 
 def battle(alpha, blabo)
-  if judge(alpha, blabo)
+  result = judge(alpha, blabo)
+  if result
     alpha.each { |aPlayer|
       aPlayer.win
     }
@@ -16,6 +18,7 @@ def battle(alpha, blabo)
       aPlayer.win
     }
   end
+  result
 end
 
 def judge(alpha, blabo)
@@ -41,7 +44,14 @@ def play_one_game(players, dropouts, counter_stops)
 
   matching.each { |aRoom|
     if aRoom.length == 2 && aRoom[1].length == 4
-      battle(aRoom[0], aRoom[1])
+      result = battle(aRoom[0], aRoom[1])
+      if $record_ps
+        if recorder = recorder_include?(aRoom[0])
+          result_record(recorder, aRoom[0], aRoom[1], result)
+        elsif recorder = recorder_include?(aRoom[1])
+          result_record(recorder, aRoom[1], aRoom[0], !result)
+        end
+      end
     end
   }
 
