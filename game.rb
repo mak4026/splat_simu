@@ -2,15 +2,13 @@ require './player.rb'
 require './Recorder.rb'
 
 def battle(alpha, blabo)
-  if $random_probability
-    if rand < $random_probability
-      reason = :random
-      result = rand(2) == 0 ? true : false
-      return result, reason
-    end
+  if $random_probability && rand < $random_probability
+    reason = :random
+    result = rand(2) == 0 ? true : false
+  else
+    result = judge(alpha, blabo)
   end
 
-  result = judge(alpha, blabo)
   if result
     alpha.each { |aPlayer|
       aPlayer.win
@@ -26,7 +24,7 @@ def battle(alpha, blabo)
       aPlayer.win
     }
   end
-  result
+  return result, reason
 end
 
 def judge(alpha, blabo)
